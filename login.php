@@ -6,12 +6,10 @@ require_once("partials/DBconnect.php");
 //FOR CALLING THE DATABASE
 require_once("function.php");
 
-if(isset($_POST["email"])){
+if(isset($_POST["submit"])){
   
   $email = $_POST["email"];
   $password =md5($_POST["password"]);
-
-
 
   $sql= "SELECT * FROM ayan WHERE email='$email' AND 	password='$password'";
 
@@ -19,14 +17,17 @@ if(isset($_POST["email"])){
 
 
   if($query->rowCount() > 0){
-    // echo "ok";
+     
+
+
     Redirect_to("welcome.php");
   }
   else{
     echo "not ok";
   }
 
-}
+} 
+
 
 
 ?> 
@@ -51,7 +52,8 @@ if(isset($_POST["email"])){
   <!--login form makingpart start-->
   <div class="container mt-5  col-md-3  border border-dark rounded">
     <h1 class="text-primary text-center mt-3">Login here</h1><hr>
-  <form action="" method="post" class="text-primary font-weight-bolder">
+
+  <form action="" method="POST" class="text-primary font-weight-bolder">
   <div class="form-group">
     <label for="exampleInputEmail1">Email</label>
     <input type="email" class="form-control" name="email" id="exampleInputEmail1" aria-describedby="emailHelp" placeholder="Enter your email ">
@@ -61,7 +63,7 @@ if(isset($_POST["email"])){
     <input type="password" class="form-control" name="password" id="exampleInputPassword1" placeholder="Password">
   </div>
   <!-- <button type="submit" class="btn btn-primary">Submit</button> -->
-  <input type="submit" class="btn btn-primary col-md-12 mb-5" value="Login">
+  <input type="submit" name="submit" class="btn btn-primary col-md-12 mb-5" value="Login">
 </form>
   </div>
 </div>

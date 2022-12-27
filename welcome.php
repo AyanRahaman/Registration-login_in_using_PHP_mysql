@@ -18,6 +18,9 @@
     </style>
 </head>
 <body>
-    <h1>Welcome your project was succesfully submitted</h1>
+
+
+
+    <h1> your project was succesfully submitted</h1>
 </body>
 </html>

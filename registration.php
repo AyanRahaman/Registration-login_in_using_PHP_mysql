@@ -16,6 +16,19 @@
             $state = $_POST["state"];
             $pin = $_POST["pin"];
 
+           
+
+            $code = "SELECT * FROM ayan WHERE email = '$email'";
+            $query = $connectingDB->query($code);
+            if($query->rowCount() > 0){
+                
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Email id alrady exist!!!</strong> Enter a fresh email id.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+              </div>';
+            }
+            else {
+
             global $connectingDB;
 
             $sql="INSERT INTO ayan(name,email,password,address,city,state,pin)
@@ -33,22 +46,20 @@
 
             $result=$stmt->execute();
 
-            Redirect_to("login.php");
+           
 
             if($result){
-              echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-              <strong>Great! your query has been submitted</strong>
-              <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                <span aria-hidden="true">&times;</span>
-              </button>
-            </div>';
-            }
+            
+            Redirect_to("login.php");
 
-          } else{
+            }
+ 
+          else {
             echo '<span class="success"> OOps! something went wrong<span>';
           }
+        }
     }
-
+  }
 ?>
 
 
@@ -73,12 +84,12 @@
   <form action="" method="post" class="text-success font-weight-bolder">
   <div class="form-group">
     <label for="inputAddress">Name</label>
-    <input type="text" class="form-control" name="name" id="inputAddress" placeholder="Enter your full name..">
+    <input type="text" class="form-control" name="name" id="inputAddress" placeholder="Enter your full name.." required>
   </div>
   <div class="form-row">
     <div class="form-group col-md-6">
       <label for="inputEmail4">Email</label>
-      <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Somebody@123gmail.com">
+      <input type="email" class="form-control" name="email" id="inputEmail4" placeholder="Somebody@123gmail.com" required>
     </div>
     <div class="form-group col-md-6">
       <label for="inputPassword4">Password</label>
